@@ -5,6 +5,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
+/.idea/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
@@ -36,3 +37,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### MVN Stuff ###
+/resolver/mvnw.cmd
+/resolver/mvnw
+/resolver/.mvn/wrapper/maven-wrapper.properties
+/resolver/.mvn/wrapper/maven-wrapper.jar
