@@ -1,7 +1,7 @@
 package com.live.resolver.controllers;
 
 import com.live.resolver.dtos.CompletedRoundDTO;
-import com.live.resolver.services.ResolverService;
+import com.live.resolver.model.ResolvedRound;
 import com.live.resolver.services.SimplestResolverServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +17,13 @@ public class ResolverController {
 
     // Get for testing
     @GetMapping
-    String justTesting(){
+    ResolvedRound justTesting(){
         CompletedRoundDTO testInput = new CompletedRoundDTO(
                 1L,
                 "Simplest Test Round",
                 "Vegard",
                 "Marius"
         );
-        return simplestResolverService.resolvedRound(testInput);
+        return simplestResolverService.resolveRound(testInput);
     }
 }
