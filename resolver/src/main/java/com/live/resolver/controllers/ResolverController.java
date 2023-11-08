@@ -27,8 +27,8 @@ public class ResolverController {
         CompletedRoundDTO testInput = new CompletedRoundDTO(
                 1L,
                 "Simplest Test Round",
-                "Vegard",
-                "Marius"
+                "VegardFraIntelliJ",
+                "MariusFraIntelliJ"
         );
         return simplestResolverService.resolveRound(testInput);
     }
