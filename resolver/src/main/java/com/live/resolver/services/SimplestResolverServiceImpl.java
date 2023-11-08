@@ -1,13 +1,19 @@
 package com.live.resolver.services;
+import com.live.resolver.clients.CandidateServiceClient;
+import com.live.resolver.dtos.CandidateDTO;
 import com.live.resolver.dtos.CompletedRoundDTO;
 import com.live.resolver.model.ResolvedRound;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.index.CandidateComponentsIndex;
 import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class SimplestResolverServiceImpl implements ResolverService{
+
+    private final CandidateServiceClient candidateServiceClient;
+
     @Override
     public ResolvedRound resolveRound(CompletedRoundDTO completedRound) {
         return resolveRoundRandom(completedRound);
@@ -22,6 +28,8 @@ public class SimplestResolverServiceImpl implements ResolverService{
                 completedRound.getDescription(),
                 "Unresolved"
         );
+
+        CandidateDTO candidateDTO = candidateServiceClient.getCandidate(2L);
 
         if (dieRoll < 0.5) {
             round.outcome = completedRound.getCandidateA() + " won";
