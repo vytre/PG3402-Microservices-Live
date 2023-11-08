@@ -1,5 +1,13 @@
 package com.live.ongoing.messaging;
 
-public class CompletedRoundEvent {
+import lombok.Value;
 
+@Value
+public class CompletedRoundEvent {
+    Long id;
+    String description;
+    String candidateA;
+    String candidateB;
+    boolean duel;
+    boolean completed;
 }

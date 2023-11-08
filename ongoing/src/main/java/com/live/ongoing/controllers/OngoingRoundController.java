@@ -15,6 +15,7 @@ public class OngoingRoundController {
 
     @GetMapping("/test")
     String solveRound(){
-        return ongoingRoundService.test();
+        //return ongoingRoundService.test();
+        return ongoingRoundService.completeRound();
     }
 }
