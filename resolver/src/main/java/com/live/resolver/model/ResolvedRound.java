@@ -1,12 +1,11 @@
 package com.live.resolver.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 @Slf4j
@@ -14,9 +13,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Getter
 public class ResolvedRound {
+
     @Id
     @Generated
     Long id;
+
     Long sourceId;
 
     String candidateA;

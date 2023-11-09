@@ -1,50 +1,48 @@
 package com.live.resolver.services;
-import com.live.resolver.clients.CandidateServiceClient;
-import com.live.resolver.dtos.CandidateDTO;
+
 import com.live.resolver.dtos.CompletedRoundDTO;
 import com.live.resolver.model.ResolvedRound;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.index.CandidateComponentsIndex;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
-@Service
+@Slf4j
+@Service("simplest")
 @RequiredArgsConstructor
 public class SimplestResolverServiceImpl implements ResolverService{
 
-    private final CandidateServiceClient candidateServiceClient;
-
     @Override
     public ResolvedRound resolveRound(CompletedRoundDTO completedRound) {
-        return resolveRoundRandom(completedRound);
+        Random random = new Random();
+        double modifiedDieRoll = random.nextDouble();
+
+        log.info("Round resolved courtesy of the Simplest Resolver");
+
+        return resolveRound(completedRound, modifiedDieRoll);
     }
 
-    public ResolvedRound resolveRound(CompletedRoundDTO completedRound, double dieRoll){
+    public ResolvedRound resolveRound(CompletedRoundDTO completedRound, double modifiedDieRoll) {
+
+        //TODO: REMOVE hardcoding of id from Resolved Round
         ResolvedRound round = new ResolvedRound(
-                null,
+                1L,
                 completedRound.getId(),
                 completedRound.getCandidateA(),
                 completedRound.getCandidateB(),
                 completedRound.getDescription(),
-                "Unresolved"
+                "unresolved"
         );
 
-        CandidateDTO candidateDTO = candidateServiceClient.getCandidate(2L);
 
-        if (dieRoll < 0.5) {
+        if(modifiedDieRoll < 0.5){
             round.outcome = completedRound.getCandidateA() + " won";
-
-        }else {
+        }
+        else {
             round.outcome = completedRound.getCandidateB() + " won";
         }
         return round;
-    }
-
-
-    public ResolvedRound resolveRoundRandom(CompletedRoundDTO completedRound){
-        Random random = new Random();
-        double number = random.nextDouble();
-
-        return resolveRound(completedRound, number);
     }
 }
