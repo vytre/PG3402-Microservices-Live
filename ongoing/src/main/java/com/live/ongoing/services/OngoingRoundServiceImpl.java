@@ -27,6 +27,6 @@ public class OngoingRoundServiceImpl implements OngoingRoundService{
 
         completedRoundPublisher.sendMessage(round);
 
-        return "Nothing so far";
+        return "Round Sendt: " + round.getId();
     }
 }
